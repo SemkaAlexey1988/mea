@@ -1,0 +1,52 @@
+@mixin butt {
+    color: #FFFFFF;
+    margin-right: 5px;
+}
+
+.contrnt-area {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-top: 30px; 
+}
+.content-area__left {
+    border: 1px solid #e3dddd;
+    padding: 15px;
+    flex-basis: 30%;
+}
+.content-area__right {
+    border: 1px solid #e3dddd;
+    padding: 15px;
+    flex-basis: 70%;
+}
+
+.error {
+    color: red;	
+    }
+    .success {
+    color: green;		
+    }
+    
+    .input-error {
+        border: 1px solid red;
+    }
+
+    .user__delete {
+        @include butt;
+    }
+
+    .user__edit {
+        @include butt;
+    }
+
+    .reset {
+color: #FFFFFF !important;
+margin-left: 10px;
+    }
+
+@media screen and (min-width:300px) and (max-width:768px) {
+    .contrnt-area {
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+}    

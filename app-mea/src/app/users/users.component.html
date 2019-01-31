@@ -1,0 +1,65 @@
+<div class="contrnt-area">
+    <div class="content-area__left">
+<div id="{{users.idUser}}" #elementEl class="users__element" *ngFor="let users of listUsers">
+<h2>{{users.name}}</h2>
+<p>{{users.email}}</p>
+<p>{{users.description}}</p>
+<button (click)="onDelete(elementEl)" class="user__delete btn btn btn-danger" >Delete</button> 
+<button class="user__edit btn btn-info" (click)="onEdit(elementEl)">Edit</button>
+</div> 
+</div> 
+
+
+
+
+<div class="content-area__right">
+{{namesValue}}
+        <div class="content-area__form">
+
+                <h3>{{titleForm}}</h3>            
+
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<p class="success" *ngIf="messageSuccess">User successfully added!</p>
+<div class="form-group">
+<input  type="hidden" [value]="id_value"   [formControlName]="'idUser'" [(ngModel)]="this.id_value">
+</div>
+            
+<div class="form-group">
+<label>Name</label>
+<input type="text" class="form-control" placeholder="name" [value]="nameValue" [formControlName]="'name'" 
+[ngClass]="{'input-error': form.get('name').invalid && form.get('name').touched}" [(ngModel)]="this.nameValue">	
+<p class="error" *ngIf="form.get('name').invalid && form.get('name').touched">The name field must not be empty</p>
+</div>
+<div class="form-group">
+<label>E-mail</label>
+<input type="text" class="form-control" placeholder="Your e-mail" [value]="emailValue" [formControlName]="'email'" 
+[ngClass]="{'input-error': form.get('email').invalid && form.get('email').touched}" [(ngModel)]="this.emailValue">	
+<p class="error" *ngIf="form.get('email').invalid && form.get('email').touched">
+    <span class="error" *ngIf="form.get('email')['errors']['required']">The e-mail field must not be empty.</span>
+    <span class="error" *ngIf="form.get('email')['errors']['email']"> Invalid email format.</span>
+    </p>		
+</div>
+<div class="form-group">
+<label>Description</label>
+<textarea [ngClass]="{'input-error': form.get('description').invalid && form.get('description').touched}" 
+class="form-control" placeholder="Your message" [value]="descriptionValue" [formControlName]="'description'" [(ngModel)]="this.descriptionValue"
+  ></textarea>	
+  <p class="error" *ngIf="form.get('description').invalid && form.get('description').touched">
+	<span *ngIf="form.get('description').errors['required']">The message field must not be empty.</span>
+	<span *ngIf="form.get('description').errors['lengthError']"> Message must be at least {{imputLength}} characters</span>
+</p>	
+</div>		
+<button class="btn btn-success" type="submit" [disabled]="form.invalid">{{buttonForm}}</button>
+<a class="btn btn-info reset" (click)="reset()">Reset</a>           
+ </form>
+
+</div>
+            
+
+
+    </div>
+
+
+
+
+</div>
